@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#123b5d">
+<title>基金投资与标普500定投学习手册</title>
+<style>
+:root{--ink:#172b3a;--muted:#5c6d7a;--blue:#123b5d;--blue2:#246b91;--pale:#edf5f9;--line:#d8e2e9;--paper:#fff;--green:#147d64;--red:#b74646;--gold:#95650c}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f2f5f7;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.65}
+header{background:linear-gradient(135deg,#123b5d,#246b91);color:#fff;padding:30px 18px 25px}header .wrap,main,.footer{max-width:960px;margin:auto}header h1{font-size:clamp(25px,5vw,39px);line-height:1.25;margin:8px 0 12px}header p{margin:0;color:#e3eef5}.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+main{padding:16px 12px 40px}.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}.btn,button{border:0;border-radius:10px;background:var(--blue);color:#fff;padding:10px 13px;font-size:14px;cursor:pointer}.btn.secondary,button.secondary{background:#e4edf3;color:var(--blue);border:1px solid #cbdbe5}.btn:focus,button:focus,input:focus,select:focus,textarea:focus{outline:3px solid #90c7e5;outline-offset:2px}
+.notice{background:#fff8e7;border:1px solid #f0dca9;border-radius:12px;padding:12px 14px;color:#614a18;margin-bottom:14px}
+.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:14px;align-items:start}.nav{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px;position:sticky;top:10px}.nav h2{font-size:16px;margin:0 0 8px}.nav a{display:block;text-decoration:none;color:var(--blue);padding:6px 8px;border-radius:7px;font-size:14px}.nav a:hover{background:var(--pale)}.content{min-width:0}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px;box-shadow:0 2px 9px #17364a08}.card h2{font-size:22px;line-height:1.3;margin:0 0 12px;color:var(--blue)}.card h3{font-size:17px;margin:20px 0 7px}.card h3:first-child{margin-top:0}p{margin:8px 0}ul,ol{padding-left:22px}li{margin:4px 0}.muted{color:var(--muted);font-size:13px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.mini{background:#f5f9fb;border:1px solid var(--line);padding:12px;border-radius:10px}.mini b{display:block;color:var(--blue);font-size:16px}.formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#eef4f7;padding:11px;border-radius:9px;overflow-wrap:anywhere;margin:8px 0}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0}th,td{text-align:left;border-bottom:1px solid var(--line);padding:9px 8px;vertical-align:top}th{background:#f0f6f9;color:var(--blue)}input,select,textarea{width:100%;padding:10px;border:1px solid #bfcfd9;border-radius:9px;font:inherit;background:#fff;color:var(--ink)}label{display:block;font-size:13px;font-weight:650;margin:10px 0 4px}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.result{background:var(--pale);border-radius:10px;padding:12px;margin-top:12px}.result strong{font-size:23px;color:var(--blue)}.positive{color:var(--green)}.negative{color:var(--red)}.check{display:flex;gap:9px;align-items:flex-start;margin:11px 0}.check input{width:auto;margin-top:6px}.check label{margin:0;font-weight:400}.question{border-top:1px solid var(--line);padding:13px 0}.question:first-of-type{border-top:0}.options label{display:flex;gap:8px;align-items:flex-start;font-weight:400;margin:7px 0}.options input{width:auto;margin-top:6px}.feedback{margin-top:8px;padding:9px;border-radius:8px;background:#f0f6f9;display:none}.record-list{padding:0;list-style:none}.record-list li{padding:10px 0;border-bottom:1px solid var(--line)}.record-list button{margin-left:6px;padding:5px 8px;font-size:12px;background:#e4edf3;color:var(--blue)}footer{max-width:960px;margin:auto;padding:0 16px 35px;color:var(--muted);font-size:12px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.nav{position:static}.nav-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px}.grid2,.fields{grid-template-columns:1fr}.card{padding:15px}.nav{padding:12px}}
+@media print{body{background:#fff}.toolbar,.nav,.interactive-only,button{display:none!important}.layout{display:block}.card{break-inside:avoid;box-shadow:none}.content{width:100%}header{background:#fff;color:#123b5d;border-bottom:2px solid #123b5d}header p{color:#123b5d}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="eyebrow">PERSONAL FINANCE · BEGINNER COURSE</div>
+<h1>基金投资与标普500<br>定投学习手册</h1>
+<p>从零基础开始：理解基金、QDII、定投、复利、风险控制，并用计算器和记录表练习。</p>
+</div></header>
+<main>
+<div class="toolbar interactive-only">
+<button onclick="window.print()">打印 / 另存为 PDF</button>
+<button class="secondary" onclick="exportRecords()">导出定投记录 JSON</button>
+<button class="secondary" onclick="resetRecords()">清空本机记录</button>
+</div>
+<div class="notice"><b>学习提醒：</b>本手册用于金融知识学习，不构成个性化投资建议。基金不保本，股票指数可能大幅下跌。请勿使用学费、生活费或近期必须使用的钱投资；未成年人进行真实交易，应由家长或监护人协助确认规则与风险。</div>
+<div class="layout">
+<nav class="nav"><h2>目录</h2><div class="nav-links">
+<a href="#start">0. 如何使用</a><a href="#basics">1. 投资基础</a><a href="#sp500">2. 标普500</a><a href="#qdii">3. QDII与基金份额</a><a href="#dca">4. 定投原理</a><a href="#calculator">5. 定投计算器</a><a href="#compound">6. 复利</a><a href="#risk">7. 风险控制</a><a href="#screen">8. 基金筛选</a><a href="#record">9. 每周记录表</a><a href="#quiz">10. 自测练习</a><a href="#glossary">11. 术语表</a><a href="#sources">12. 延伸学习</a>
+</div></nav>
+<div class="content">
+<section class="card" id="start"><h2>0. 如何使用这份手册</h2>
+<p>建议按章节顺序学习，每次花 10–20 分钟。先理解概念，再自己输入数字计算，最后完成自测。手册里的记录功能会尝试保存在当前浏览器的本机存储中；清理浏览数据、换设备或某些隐私模式可能导致记录消失，因此重要记录要定期导出备份。</p>
+<div class="grid2"><div class="mini"><b>第1阶段</b>看懂股票、基金、指数和净值。</div><div class="mini"><b>第2阶段</b>学会计算定投成本、收益和回撤。</div><div class="mini"><b>第3阶段</b>理解标普500、QDII、汇率与费用。</div><div class="mini"><b>第4阶段</b>用检查清单独立研究基金。</div></div>
+</section>
+<section class="card" id="basics"><h2>1. 投资基础：股票、基金、指数</h2>
+<h3>股票是什么？</h3><p>股票代表上市公司的一部分权益。股价受企业盈利、未来预期、利率、经济环境和市场情绪等因素影响。公司不错，不代表任何价格买入都能获得好回报。</p>
+<h3>基金是什么？</h3><p>基金按照基金合同募集资金，并按约定的投资范围运作。买基金份额相当于持有基金的一部分，不代表本金受到保证。</p>
+<div class="table-wrap"><table><thead><tr><th>类型</th><th>常见投资方向</th><th>需要了解的风险</th></tr></thead><tbody>
+<tr><td>货币基金</td><td>短期货币市场工具等</td><td>并非银行存款，不承诺保本</td></tr><tr><td>债券基金</td><td>国债、信用债等</td><td>利率、信用与流动性风险</td></tr><tr><td>股票基金</td><td>股票</td><td>股票市场波动，可能出现较大亏损</td></tr><tr><td>指数基金</td><td>跟踪特定指数</td><td>指数下跌、跟踪偏离与费用</td></tr><tr><td>FOF</td><td>主要投资其他基金</td><td>底层资产风险及可能存在的多层费用</td></tr></tbody></table></div>
+<h3>指数与指数基金有什么区别？</h3><p>指数是按规则编制的市场指标；指数基金是试图跟踪该指数的实际投资产品。指数点位不是基金净值，指数涨幅也不保证等于基金收益。</p>
+<div class="mini"><b>记住</b>“买指数”在日常说法中通常是买跟踪指数的基金等产品；实际购买前应看清基金合同、投资范围和风险等级。</div>
+</section>
+<section class="card" id="sp500"><h2>2. 标普500：它是什么、为什么涨跌</h2>
+<p>标普500（S&amp;P 500）是美国大型上市公司股票市场的重要指数之一，包含约500家代表性公司，采用经过调整的市值加权方法。它并不是每家公司权重相同的简单平均。</p>
+<h3>影响指数表现的因素</h3><ul><li><b>企业盈利：</b>盈利和未来预期会影响估值。</li><li><b>利率：</b>利率变化可能影响股票估值和融资成本，方向并非总是固定。</li><li><b>经济增长：</b>会影响企业收入、成本与盈利预期。</li><li><b>估值：</b>即使企业发展不错，买入价格过高也可能压低未来回报。</li><li><b>情绪与突发事件：</b>会放大短期波动。</li></ul>
+<h3>市值加权的简化例子</h3><p>假设指数只包含三家公司：A 权重60%、涨10%；B 权重30%、跌5%；C 权重10%、涨2%。</p><div class="formula">指数简化收益 = 60%×10% + 30%×(-5%) + 10%×2% = 4.7%</div><p>权重越大的成分股，对指数短期表现的影响通常越大。此例忽略指数调整、股息和其他实际因素。</p>
+<h3>如何理解估值（P/E）？</h3><div class="formula">市盈率（P/E）= 股价 ÷ 每股收益</div><p>若股价100元、每股年度收益5元，市盈率为20倍。市盈率低不等于一定便宜，市盈率高也不必然意味着马上下跌；还要看增长预期、盈利质量、行业和利率环境。</p>
+<p><b>重要：</b>长期看好一个市场，不等于短期不会大幅下跌，也不等于任何买入价格都合理。</p>
+</section>
+<section class="card" id="qdii"><h2>3. QDII、汇率、A类与C类</h2>
+<h3>QDII是什么？</h3><p>QDII是合格境内机构投资者相关机制的简称。符合条件的境内基金可以依规定投资境外市场。买入跟踪海外指数的QDII基金时，实际收益可能同时受指数表现、汇率、费用、交易成本和估值结算安排影响。</p>
+<h3>汇率举例</h3><p>假设美元资产价格不变，但美元相对人民币贬值，那么换算成人民币后的资产价值可能下降；如果美元升值，人民币计价结果可能得到帮助。真实回报还取决于资产涨跌和基金运作。</p>
+<h3>跟踪误差</h3><p>跟踪误差描述基金收益与目标指数收益差异的波动程度。某段期间指数涨10%、基金涨9.2%，两者相差0.8个百分点；但这并不自动等于正式的跟踪误差统计值。</p>
+<h3>A类与C类怎么比较？</h3><div class="table-wrap"><table><thead><tr><th>项目</th><th>A类常见情况</th><th>C类常见情况</th></tr></thead><tbody><tr><td>申购费</td><td>可能收取，平台可能有折扣</td><td>通常不收申购费</td></tr><tr><td>销售服务费</td><td>通常没有该项费用</td><td>通常按年收取</td></tr><tr><td>适合期限</td><td>需计算申购费与持续费用的综合影响</td><td>需计算持有期间持续费用及赎回费</td></tr></tbody></table></div><p>不能只凭A或C的字母决定。应按计划持有期限，比较申购费、管理费、托管费、销售服务费、赎回费和其他成本，并以最新基金合同及平台规则为准。</p>
+<h3>申购限额</h3><p>QDII基金可能因额度或其他原因限制每日申购金额，限额会变化。下单前查看支付宝当日页面和基金公告。不要通过拆分账户等方式规避限额，也不要把“能买到”误解为“值得买”。</p>
+</section>
+<section class="card" id="dca"><h2>4. 定投原理：优势与局限</h2>
+<p>定投是按固定时间间隔投入固定金额，例如每周一投入10元。它有助于建立规律、减少择时压力，但不保证盈利，也不能消除市场风险。</p>
+<h3>相同金额，价格不同，买到的份额不同</h3><div class="table-wrap"><table><thead><tr><th>每份净值</th><th>投入</th><th>可买份额（忽略费用）</th></tr></thead><tbody><tr><td>1元</td><td>100元</td><td>100份</td></tr><tr><td>2元</td><td>100元</td><td>50份</td></tr><tr><td>0.5元</td><td>100元</td><td>200份</td></tr></tbody></table></div>
+<div class="formula">买入份额 = 投入金额 ÷ 买入时每份净值</div>
+<h3>平均持仓成本例子</h3><p>投入100元买入净值1元的基金，得到100份；再投入100元买入净值0.8元的基金，得到125份。累计投入200元、持有225份。</p><div class="formula">平均成本 = 200 ÷ 225 ≈ 0.8889元/份</div><p>如果净值跌到更低，成本可能下降，但资产仍可能继续缩水。低净值不一定代表便宜或安全。</p>
+<h3>定投可能遇到的市场路径</h3><ul><li>持续上涨：较早投入的资金可能更早参与上涨，定投不一定优于一次性投资。</li><li>先跌后涨：持续投入可能在较低价格买到更多份额。</li><li>持续下跌：买到更多份额也无法保证总资产不亏损。</li><li>期限过短：需要用钱时，市场可能正处于下跌阶段。</li></ul>
+<p>每周与每月哪种频率更好，没有适合所有人的固定答案。应优先考虑预算、交易规则、执行便利和投资期限。</p>
+</section>
+<section class="card" id="calculator"><h2>5. 定投计算器：每周10元计划</h2>
+<p>输入每周金额和投资周数，计算累计投入。下方收益率是人为设定的情景假设，不是预测。</p>
+<div class="fields"><div><label for="weekly">每周投入（元）</label><input id="weekly" type="number" min="0" step="1" value="10"></div><div><label for="weeks">投入周数</label><input id="weeks" type="number" min="1" max="520" value="52"></div><div><label for="rate">假设年化收益率（%）</label><input id="rate" type="number" min="-90" max="100" step="1" value="5"></div><div><label for="timing">每期投入时点</label><select id="timing"><option value="end">每周末投入（简化）</option><option value="start">每周初投入（简化）</option></select></div></div>
+<div class="result"><div>累计投入</div><strong id="contrib">520.00 元</strong><p>情景期末金额：<b id="fv">约 533.00 元</b></p><p>情景盈亏：<b id="gain">约 +13.00 元</b></p><p class="muted" id="calcNote">采用等效周收益率估算；真实回报会随每周市场路径、费用、汇率和实际成交时间变化。</p></div>
+<div class="table-wrap"><table><thead><tr><th>假设年化收益率</th><th>期末金额约</th><th>相对投入盈亏约</th></tr></thead><tbody id="scenarioRows"></tbody></table></div>
+<p class="muted">这是数学情景模拟，不是收益预测。实际基金收益不会稳定地按某个百分比增长。</p>
+</section>
+<section class="card" id="compound"><h2>6. 复利与收益率</h2>
+<h3>收益率基础公式</h3><div class="formula">收益率 =（当前资产价值 − 投入成本）÷ 投入成本 × 100%</div><p>若投入500元，当前市值550元，账面收益50元，简单收益率10%。多次投入、卖出或分红时，应明确成本口径，不能随便用这个简化公式代替个人资金加权收益率。</p>
+<h3>复利是什么？</h3><p>如果一笔资金产生的收益继续留在账户中，之后也参与收益计算，就可能形成复利。</p><div class="formula">期末金额 = 初始本金 × (1 + 年收益率) ^ 年数</div>
+<div class="fields"><div><label for="principal">初始本金（元）</label><input id="principal" type="number" min="0" value="1000"></div><div><label for="compoundRate">假设年收益率（%）</label><input id="compoundRate" type="number" min="-99" max="100" value="5"></div><div><label for="years">年数</label><input id="years" type="number" min="0" max="100" value="10"></div></div>
+<div class="result"><p>假设期末金额</p><strong id="compoundResult">1,628.89 元</strong><p class="muted">假设每年按固定收益率增长且收益全部再投资。真实市场收益有波动，可能亏损。</p></div>
+<h3>定投为什么不能直接套用单笔本金公式？</h3><p>因为每笔投入的时间不同。早期资金投资时间长，后期资金投资时间短，所以要按每期现金流估算。计算器里的定投模型采用简化的等效周收益率，只能用于理解数学关系。</p>
+</section>
+<section class="card" id="risk"><h2>7. 风险控制与投资纪律</h2>
+<h3>最大回撤</h3><p>最大回撤是历史期间内资产从某个高点跌到之后低点的最大幅度。例如市值从1000元跌至800元，回撤为20%。从800元涨回1000元，需要上涨25%，不是20%。</p><div class="formula">回撤率 =（当前值 − 前期高点）÷ 前期高点 × 100%</div>
+<h3>先分清资金用途</h3><ul><li><b>近期必须用的钱：</b>例如学费、生活费、近期确定要支出的费用，不适合承担明显的股票市场风险。</li><li><b>应急备用资金：</b>优先考虑安全性与流动性。</li><li><b>可承受波动的长期资金：</b>只有在理解风险后，才考虑股票基金等产品。</li></ul>
+<h3>五个常见错误</h3><ol><li>追逐近期涨幅最高的基金。</li><li>因为短期下跌就不断换产品。</li><li>认为下跌后一定反弹而盲目加仓。</li><li>忽略持续性费用、赎回费和限额。</li><li>相信“稳赚不赔”“保证高收益”等承诺。</li></ol>
+<div class="mini"><b>核心原则</b>分散投资可以降低部分集中风险，但不能消除整体市场风险。长期投资也需要匹配资金期限和风险承受能力。</div>
+</section>
+<section class="card" id="screen"><h2>8. 基金筛选：研究检查清单</h2><p>在研究任何基金前，逐项检查并写下证据来源。勾选只表示你已核对，不代表基金一定值得买。</p>
+<div id="checklist">
+<div class="check"><input type="checkbox" id="c1"><label for="c1"><b>投资目标：</b>确认基金跟踪哪个指数、投资范围是什么。</label></div>
+<div class="check"><input type="checkbox" id="c2"><label for="c2"><b>产品结构：</b>分清指数基金、ETF联接、QDII或FOF。</label></div>
+<div class="check"><input type="checkbox" id="c3"><label for="c3"><b>历史表现：</b>查看多个期间收益、波动与回撤，不只看近一年。</label></div>
+<div class="check"><input type="checkbox" id="c4"><label for="c4"><b>跟踪效果：</b>查看跟踪误差、基金与指数收益差异。</label></div>
+<div class="check"><input type="checkbox" id="c5"><label for="c5"><b>全部费用：</b>核对申购、赎回、管理、托管、销售服务等费用。</label></div>
+<div class="check"><input type="checkbox" id="c6"><label for="c6"><b>交易规则：</b>确认最低金额、申购限额、赎回规则与到账时间。</label></div>
+<div class="check"><input type="checkbox" id="c7"><label for="c7"><b>风险承受力：</b>明确如果大幅亏损，是否仍能承受，资金何时要用。</label></div>
+<div class="check"><input type="checkbox" id="c8"><label for="c8"><b>信息来源：</b>优先阅读基金合同、招募说明书、产品资料概要和管理人公告。</label></div>
+</div>
+<p class="muted">基金页面上的历史涨幅、估值和申购限额都会变化。查阅时记录日期，避免把旧数据当成最新事实。</p>
+</section>
+<section class="card" id="record"><h2>9. 每周10元定投记录表</h2>
+<p>用于记录学习或模拟交易，也可以记录经家长/监护人确认后的实际投资。不要在本文件中填写账号、密码、身份证号码等敏感信息。</p>
+<div class="fields"><div><label for="rdate">记录日期</label><input id="rdate" type="date"></div><div><label for="ramount">本次投入金额（元）</label><input id="ramount" type="number" min="0" step="0.01" value="10"></div><div><label for="rnav">买入净值（元，可选）</label><input id="rnav" type="number" min="0" step="0.0001"></div><div><label for="rshares">确认份额（可选）</label><input id="rshares" type="number" min="0" step="0.0001"></div><div><label for="rcost">累计投入成本（元）</label><input id="rcost" type="number" min="0" step="0.01"></div><div><label for="rvalue">当前持仓市值（元，可选）</label><input id="rvalue" type="number" min="0" step="0.01"></div></div>
+<label for="rnote">本周观察与学习笔记</label><textarea id="rnote" rows="3" placeholder="例如：学习了汇率如何影响人民币计价的QDII基金。"></textarea>
+<div class="toolbar interactive-only" style="margin-top:12px"><button onclick="addRecord()">保存这条记录</button><button class="secondary" onclick="exportRecords()">导出记录备份</button></div>
+<div id="recordStatus" class="muted" aria-live="polite"></div><h3>已保存记录</h3><ul class="record-list" id="records"></ul>
+<p class="muted">如果浏览器阻止本地存储，记录可能无法持久保存。请使用“导出记录备份”保留副本。</p>
+</section>
+<section class="card" id="quiz"><h2>10. 自测练习</h2><p>先独立作答，再点击查看解析。</p>
+<div class="question"><b>题目1：每周投入10元，连续52周，忽略费用时累计投入多少？</b><div class="options"><label><input type="radio" name="q1" value="a"> 120元</label><label><input type="radio" name="q1" value="b"> 520元</label><label><input type="radio" name="q1" value="c"> 1000元</label></div><div class="feedback" id="f1">52 × 10 = 520元。这是投入总额，不是期末资产价值。</div></div>
+<div class="question"><b>题目2：定投能保证在市场下跌时不亏损吗？</b><div class="options"><label><input type="radio" name="q2" value="a"> 能，只要坚持就一定赚钱</label><label><input type="radio" name="q2" value="b"> 不能，持续下跌时总资产仍可能亏损</label><label><input type="radio" name="q2" value="c"> 能，但只适用于海外指数</label></div><div class="feedback" id="f2">定投能形成规律，但不能消除市场风险，也不能保证盈利。</div></div>
+<div class="question"><b>题目3：基金跟踪的指数上涨10%，基金就一定上涨10%吗？</b><div class="options"><label><input type="radio" name="q3" value="a"> 一定完全相同</label><label><input type="radio" name="q3" value="b"> 不一定，费用、跟踪偏离、汇率等可能造成差异</label><label><input type="radio" name="q3" value="c"> 基金收益必定高于指数</label></div><div class="feedback" id="f3">指数和基金不是同一个东西，QDII基金还可能受到汇率和交易安排等影响。</div></div>
+<div class="question"><b>题目4：资产从1000元降至800元，回撤是多少？</b><div class="options"><label><input type="radio" name="q4" value="a"> 20%</label><label><input type="radio" name="q4" value="b"> 25%</label><label><input type="radio" name="q4" value="c"> 10%</label></div><div class="feedback" id="f4">(800−1000) ÷ 1000 = −20%，因此回撤幅度为20%。从800元恢复到1000元则需要上涨25%。</div></div>
+<div class="question"><b>题目5：研究基金时，哪种做法更稳妥？</b><div class="options"><label><input type="radio" name="q5" value="a"> 只看近一年收益排名</label><label><input type="radio" name="q5" value="b"> 只看基金名字是否熟悉</label><label><input type="radio" name="q5" value="c"> 同时核对投资目标、费用、风险、跟踪效果与交易规则</label></div><div class="feedback" id="f5">完整研究需要多维度核对，历史收益或名字都不能单独说明是否适合。</div></div>
+<button onclick="gradeQuiz()">查看自测解析</button><div id="quizScore" class="result" style="display:none" aria-live="polite"></div>
+</section>
+<section class="card" id="glossary"><h2>11. 术语速查</h2><div class="table-wrap"><table><thead><tr><th>术语</th><th>解释</th></tr></thead><tbody>
+<tr><td>净值</td><td>每份基金份额对应的资产价值。</td></tr><tr><td>份额</td><td>持有的基金单位数量。</td></tr><tr><td>持仓成本</td><td>总成本除以持有份额（具体需考虑费用及分红处理方式）。</td></tr><tr><td>账面收益</td><td>当前估值与成本之间的差额，卖出前会随价格变化。</td></tr><tr><td>年化收益率</td><td>将一段期间的收益换算为年化指标，不代表未来收益。</td></tr><tr><td>最大回撤</td><td>历史期间从高点到随后低点的最大下跌幅度。</td></tr><tr><td>市盈率</td><td>股价与每股收益的比值，常用于估值分析。</td></tr><tr><td>跟踪误差</td><td>基金收益与目标指数收益差异的波动程度。</td></tr><tr><td>QDII</td><td>境内机构按规定投资境外市场的相关机制。</td></tr><tr><td>复利</td><td>已产生的收益继续参与后续收益计算。</td></tr><tr><td>资产配置</td><td>按目标与风险承受能力在不同资产之间分配资金。</td></tr><tr><td>流动性</td><td>资产变现的便利程度、时间和成本。</td></tr></tbody></table></div>
+</section>
+<section class="card" id="sources"><h2>12. 延伸学习与查证</h2>
+<ul><li><a href="https://www.investor.gov/introduction-investing" target="_blank" rel="noopener">Investor.gov：投资入门</a>——投资、风险、资产配置等基础概念。</li><li><a href="https://www.investor.gov/introduction-investing/investing-basics/glossary/dollar-cost-averaging" target="_blank" rel="noopener">Investor.gov：定期定额投资</a>——理解定投的原理和局限。</li><li><a href="https://www.investor.gov/introduction-investing/investing-basics/glossary/mutual-fund-fees-and-expenses" target="_blank" rel="noopener">Investor.gov：基金费用</a>——了解费用如何影响实际回报。</li><li><a href="https://www.spglobal.com/spdji/" target="_blank" rel="noopener">S&amp;P Dow Jones Indices 官方网站</a>——查询指数编制与方法资料。</li><li>实际购买前：查看基金管理人官网发布的基金合同、招募说明书、产品资料概要及最新公告，并核对销售平台的实时规则。</li></ul>
+<p><b>最后提醒：</b>这是一份学习工具，不会预测市场涨跌。用真实资金投资前，请确认资金用途、风险承受力和产品规则；如果你未满18岁，应与家长或监护人一起了解适用要求。</p>
+</section>
+</div></div>
+</main>
+<footer>基金投资与标普500定投学习手册 · 离线单文件网页 · 内容为教育用途，不构成投资建议。</footer>
+<script>
+const $=id=>document.getElementById(id);
+function annuity(weekly,weeks,annualRate,timing){const rw=Math.pow(1+annualRate,1/52)-1;if(Math.abs(rw)<1e-10)return weekly*weeks;let fv=weekly*(Math.pow(1+rw,weeks)-1)/rw;if(timing==='start')fv*=1+rw;return fv;}
+function updateCalc(){let w=Math.max(0,Number($('weekly').value)||0),n=Math.max(1,Math.min(520,Math.floor(Number($('weeks').value)||1))),r=Math.max(-.9,Math.min(1,(Number($('rate').value)||0)/100)),timing=$('timing').value;let c=w*n,f=annuity(w,n,r,timing),g=f-c;$('contrib').textContent=c.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2})+' 元';$('fv').textContent='约 '+f.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2})+' 元';$('gain').textContent=(g>=0?'+':'')+g.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2})+' 元';$('gain').className=g>=0?'positive':'negative';let rows='';[-.2,-.1,0,.05,.08,.1,.15].forEach(rr=>{let ff=annuity(w,n,rr,timing),gg=ff-c;rows+=`<tr><td>${(rr*100).toFixed(0)}%</td><td>${ff.toFixed(2)}元</td><td class="${gg>=0?'positive':'negative'}">${gg>=0?'+':''}${gg.toFixed(2)}元</td></tr>`});$('scenarioRows').innerHTML=rows;}
+['weekly','weeks','rate','timing'].forEach(id=>$(id).addEventListener('input',updateCalc));
+function updateCompound(){let p=Math.max(0,Number($('principal').value)||0),r=Math.max(-.99,Math.min(1,(Number($('compoundRate').value)||0)/100)),y=Math.max(0,Math.min(100,Number($('years').value)||0));$('compoundResult').textContent=(p*Math.pow(1+r,y)).toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2})+' 元';}
+['principal','compoundRate','years'].forEach(id=>$(id).addEventListener('input',updateCompound));
+function loadRecords(){try{return JSON.parse(localStorage.getItem('fundStudyRecords')||'[]')}catch(e){return []}}
+function saveRecords(rows){try{localStorage.setItem('fundStudyRecords',JSON.stringify(rows));return true}catch(e){return false}}
+function renderRecords(){let rows=loadRecords();$('records').innerHTML='';if(!rows.length){$('records').innerHTML='<li class="muted">暂时没有记录。</li>';return;}rows.slice().reverse().forEach((r,idx)=>{let li=document.createElement('li');let txt=document.createElement('div');txt.innerHTML=`<b>${escapeHtml(r.date)}</b> · 投入 ${Number(r.amount||0).toFixed(2)} 元`;let sub=document.createElement('div');sub.className='muted';sub.textContent=`净值：${r.nav||'未填'}；份额：${r.shares||'未填'}；累计成本：${r.cost||'未填'}；持仓市值：${r.value||'未填'}；笔记：${r.note||'无'}`;let btn=document.createElement('button');btn.textContent='删除';btn.onclick=()=>{let all=loadRecords();all.splice(all.length-1-idx,1);saveRecords(all);renderRecords()};li.append(txt,sub,btn);$('records').appendChild(li);});}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function addRecord(){let rows=loadRecords();rows.push({date:$('rdate').value||new Date().toISOString().slice(0,10),amount:$('ramount').value,nav:$('rnav').value,shares:$('rshares').value,cost:$('rcost').value,value:$('rvalue').value,note:$('rnote').value});let ok=saveRecords(rows);$('recordStatus').textContent=ok?'记录已保存到当前浏览器本机存储。建议定期导出备份。':'浏览器未允许本地保存，请复制内容或导出前先尝试其他浏览器。';renderRecords();}
+function exportRecords(){let blob=new Blob([JSON.stringify(loadRecords(),null,2)],{type:'application/json'});let url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='每周定投记录备份.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function resetRecords(){if(confirm('确定清空本机保存的全部定投记录？建议先导出备份。')){saveRecords([]);renderRecords();$('recordStatus').textContent='本机记录已清空。';}}
+function gradeQuiz(){let answers={q1:'b',q2:'b',q3:'b',q4:'a',q5:'c'},score=0;Object.keys(answers).forEach((q,i)=>{let chosen=document.querySelector(`input[name="${q}"]:checked`);let f=$('f'+(i+1));f.style.display='block';if(chosen&&chosen.value===answers[q])score++;});$('quizScore').style.display='block';$('quizScore').innerHTML=`<strong>${score}/5</strong><p>${score===5?'全部答对！可以继续研究基金产品资料。': '建议阅读对应章节，再重新作答。'} 每道题下方都有解析。</p>`;}
+$('rdate').value=new Date().toISOString().slice(0,10);updateCalc();updateCompound();renderRecords();
+</script>
+</body>
+</html>
